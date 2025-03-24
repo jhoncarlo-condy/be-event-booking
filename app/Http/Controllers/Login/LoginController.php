@@ -13,10 +13,11 @@ class LoginController extends Controller
 {
     public function login(LoginFormRequest $request)
     {
-        $user = User::where('email', $request->email)->first();
+        $user = User::with('userRole')->where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
+                'success' => false,
                 'message' => 'Invalid credentials'
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
@@ -25,6 +26,9 @@ class LoginController extends Controller
 
 
         return response()->json([
+            'success' => true,
+            'message' => 'Login Successful',
+            'role' => $user->userRole->name,
             'access_token' => $token,
             'token_type'   => 'Bearer'
         ], Response::HTTP_OK);
