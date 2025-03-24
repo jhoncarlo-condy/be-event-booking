@@ -38,6 +38,7 @@ class LoginController extends Controller
     {
         $request->user()->tokens()->delete();
         return response()->json([
+            'success' => true,
             'message' => 'Successfully logged out'
         ], Response::HTTP_OK);
     }
