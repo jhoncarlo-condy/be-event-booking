@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Event\EventController;
 use App\Http\Controllers\Login\LoginController;
 use App\Http\Controllers\Login\RegisterController;
+use App\Http\Controllers\User\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,13 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout']);
-    Route::get('/me', [LoginController::class, 'me']);
+    Route::get('/profile', [UserController::class, 'profile']);
 
     Route::resource('/event', EventController::class);
+
+    //user
+    Route::get('/users', [UserController::class, 'index']);
+    Route::get('/user/{email}', [UserController::class, 'show']);
+    Route::put('/update/{email}', [UserController::class, 'update']);
+    Route::post('/change-password', [UserController::class, 'changePassword']);
 });
