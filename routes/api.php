@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Category\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Event\EventController;
@@ -26,7 +27,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout']);
     Route::get('/profile', [UserController::class, 'profile']);
 
-    Route::resource('/event', EventController::class);
+    Route::resource('/events', EventController::class);
+    Route::resource('/categories', CategoryController::class);
 
     //user
     Route::get('/users', [UserController::class, 'index']);
