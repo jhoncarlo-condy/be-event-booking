@@ -72,12 +72,12 @@ class EventController extends Controller
                 return response()->json([
                     'success' => true,
                     'message' => 'Event updated successfully',
-                ], Response::HTTP_CREATED);
+                ], Response::HTTP_OK);
             }
 
             return response()->json([
                 'success' => false,
-                'message' => 'Event creation failed'
+                'message' => 'Event update failed'
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         });
     }

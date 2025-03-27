@@ -39,6 +39,7 @@ class EventFormRequest extends FormRequest
             'price'       => ['required', 'numeric', 'min:1'],
             'location'    => ['required', 'string', 'max:255'],
             'image'       => ['nullable', 'image'],
+            'status'      => ['sometimes', 'string', 'max:255'],
         ];
     }
 
@@ -54,6 +55,7 @@ class EventFormRequest extends FormRequest
             'price'       => ['sometimes', 'numeric', 'min:1'],
             'location'    => ['sometimes', 'string', 'max:255'],
             'image'       => ['sometimes', 'image'],
+            'status'      => ['sometimes', 'string', 'max:255']
         ];
     }
 
